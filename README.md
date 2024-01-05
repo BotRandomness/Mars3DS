@@ -28,11 +28,11 @@
 ### Download
 Should work on both real hardware (old 3DS/2DS, and new 3DS/2DS) and 3DS emulators like Citra. Note: for real hardware, you do need a homebrewed system.
 #### 3dsx
-1. Download the .3dsx ROM file here or from the releases.
+1. Download the .3dsx ROM file [here](https://github.com/BotRandomness/Mars3DS/releases) or from the releases.
 2. You can now run 3dsx file via the Homebrew Launcher.
 
 #### cia
-1. Download the .cia ROM file here or from the releases.
+1. Download the .cia ROM file [here](https://github.com/BotRandomness/Mars3DS/releases) or from the releases.
 2. You can install the .cia file via tools like FBI.
 
 ### Controls

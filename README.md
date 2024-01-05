@@ -15,7 +15,7 @@
 </a>
 
 <p align="center">
-<strong><em>A little history</em></strong>: <strong>Mars</strong> was actally a game I made before to be cross platform between PC and mobile devices from a single code base. However, even though I fully completed the game, I never relased it publicly. Hence why the project is called <strong>"Mars3DS"</strong> and not just <em>"Mars"</em>. Fast forward to now (when this readme was made), I was thinking about working on a C++ project. I have done a bit of C++, but did no projects on it. After coming off from making homebrew for the NDS using C, I thought well it make sense now to make a <strong>3DS homebrew using C++!</strong> Just like that, the idea of remaking Mars for 3DS came to be. Even when I made Mars originally, I always thought it would cool if this was some sort of homebrew for a Nintendo platfrom (maybe just the retro aesthetics was hitting me), but at the time I didn't have any C/C++ experience at all. But now that orignal idea is a reailty! The idea behind Mars is supposed to be a <strong>"lost retro game"</strong> hence why the game has a mininal feel <em>(if that made sense)</em>. <strong>Hope you enjoy! :) </strong>   
+<strong><em>A little history</em></strong>: <strong>Mars</strong> was actually a game I made before to be cross platform between PC and mobile devices from a single code base. However, even though I fully completed the game, I never relased it publicly. Hence why the project is called <strong>"Mars3DS"</strong> and not just <em>"Mars"</em>. Fast forward to now (when this readme was made), I was thinking about working on a C++ project. I have done a bit of C++, but did no projects on it. After coming off from making homebrew for the NDS using C, I thought well it make sense now to make a <strong>3DS homebrew using C++!</strong> Just like that, the idea of remaking Mars for 3DS came to be. Even when I made Mars originally, I always thought it would cool if this was some sort of homebrew for a Nintendo platfrom (maybe just the retro aesthetics was hitting me), but at the time I didn't have any C/C++ experience at all. But now that orignal idea is a reailty! The idea behind Mars is supposed to be a <strong>"lost retro game"</strong> hence why the game has a mininal feel <em>(if that made sense)</em>. <strong>Hope you enjoy! :) </strong>   
 
 </p>
 
@@ -78,7 +78,7 @@ To make 3DS homwbrew, a open-source toolchain known as DevKitPro is used. DevKit
 3. Run `make` in the terminal, and `Mars3D.3dsx` will be made!
 
 #### Installable .cia file
-<strong>This is only for if your interested if you want to produces a .cia file which is a 3DS installable file.</strong> These instruction are not only revelent for this project, but you can apply this to own 3DS homebrew project if you are interested, <strong>hence why I included this part, just to share this information if you are curious.</strong> With this in mind, these <strong>steps are written to be very general.</strong>  
+<strong>This is only for if your interested if you want to produces a .cia file which is a 3DS installable file.</strong> These instructions are not only revelent for this project, but you can apply this to own 3DS homebrew project if you are interested, <strong>hence why I included this part, just to share this information if you are curious.</strong> With this in mind, these <strong>steps are written to be very general.</strong>  
 
 1. Do the previous steps mentioned before from steps 1 to 3.
 2. Along with the `.3dsx` file, you may notice a `.elf` is also made. This is like a raw binary, we need this produce a `.cia` file.
@@ -110,7 +110,7 @@ Here's a little on the program layout!
 
 Looking over the code, the program is quite simple, don't worry! This portation was written to be simple, so no matter of your skill level, anybody should get the idea of the program works, it's sort of the reason why I write these parts! :)
 
-C++ is a object oriented language. With this is mind, this game is built off of objects. The player, `Astro`, is a object, the bullets for both the player and enemy are objects, the "Enemy" is a object, etc. Each object like the player have values that is only relevant to itself. For example: the `x` and `y` position, the height, `h`, the width `w`, `speedX`, `speedY`, etc. Each object also have methods that handle behaviours of the object. For example, going back to the player, it has a method for `void Astro::movement()` to handle movement controls, and `void Astro::collision(std::vector<Platform>& platList)` to handle collision on platforms, which themselves are objects.
+C++ is a object oriented language. With this is mind, this game is built off of objects. The player, `Astro`, is a object, the bullets for both the player and enemy are objects, the `Enemy` is a object, etc. Each object, like the player, will have values that is only relevant to them self. For example: the `x` and `y` position, the height, `h`, the width `w`, `speedX`, `speedY`, etc. Each object also have methods that handle behaviours of the object. For example, going back to the player, it has a method for `void Astro::movement()` to handle movement controls, and `void Astro::collision(std::vector<Platform>& platList)` to handle collision on platforms, which themselves are objects.
 
 Then each objects will have these 2 methods look like this:
 ```cpp
@@ -143,9 +143,9 @@ void Astro::render()
 }
 ```
 
-After creating methods relating to behaviours, I call these methods in a update method or a render method. The update handles anything that relates to changes of values, and render handles all methods realting to draw the sprite on screen. You may be wondering why I did this? Well have all these object but nothing to put them together. This bring on the segway to scenes!
+After creating methods relating to behaviours, I call these methods in a update method or a render method. The update handles anything that relates to changes of values, and render handles all methods relating to draw the sprite on screen. You may be wondering, why did I do this? Well, we have all these objects, but nothing to put them together. This brings on the segway to scenes!
 
-In the `main.cpp` file, the main game loop is divided into 2 parts. A `update` part and the `render` part. Sounds familiar right? Using citro2d, Any functions that realates to drawing sprites on screen have to be called in between `C3D_FrameBegin(C3D_FRAME_SYNCDRAW);` and `C3D_FrameEnd(0);` This is why I divided the object's methods were funnel into one of the two update and render parts. This is not only better for organization, but makes it easier to track a object within a scene. Now the scene itself is not object. I made the choice to not make the scenes in to object as this a very simple game, and didn't want to complicated more. To understand this better, here's a example of how the scenes are handle:
+In the `main.cpp` file, the main game loop is divided into 2 parts. A `update` part and the `render` part. Sounds familiar right? Using citro2d, Any functions that relates to drawing sprites on screen have to be called in between `C3D_FrameBegin(C3D_FRAME_SYNCDRAW);` and `C3D_FrameEnd(0);` This is why I divided the object's methods were funnel into one of the two update and render parts. This is not only better for organization, but makes it easier to track a object within a scene. Now the scene itself is not object. I made the choice to not make the scenes in to object as this a very simple game, and didn't want to complicate it more. To understand this better, here's a example of how the scenes are handle:
 
 ```cpp
 //Main game loop
@@ -187,11 +187,11 @@ while(aptMainLoop())
 }
 ...
 ```
-As seen in the basic structure for the main game loop, the transition between the scenes are handled by a `scene` varible, with the if statement handling that specfic methods and function calls needed for that scene.
+As seen in the basic structure for the main game loop, the transition between the scenes are handled by a `scene` variable, with the if statement handling that specfic methods and function calls needed for that scene.
 
 Outside the main function there a few function. These few functions relate to the scene, handling actions such as `void spawnEnemy(std::vector<Enemy*>& paraList, RNG& gen, int minX, int maxX, int minY, int maxY, std::chrono::steady_clock::time_point& startTime)` If I had each scene as a objects, these functions would basically be methods of the scene.
 
-Do note I used very simple memory management. In C++ there are smart pointers, however since the program is simple, I chose the route of using the `new` and `delete`. Memeory management is used for spawning and delating bullets of both player and enemies, as well the ememies themselves.
+Do note I used very simple memory management. In C++, there are smart pointers, however since the program is simple, I chose the route of using the `new` and `delete`. Memory management is used for spawning and deleting bullets of both player and enemies, as well the ememies themselves.
 
 So far I haven't really talked on how citro2d works, and that's because citro2d itself is really simple in way where it has function to make sprites, and draw them to screen, and that's pretty much it. For those are curious, citro2d it self is built on citro3d and libctru, which both are also included with devkitpro. If you ever used frameworks like raylib, or NightFox's Lib with libnds for NDS homebrew, it's pretty simular to those. I recommend looking at the citro2d documentation, and for example, the player object code to understand the basics of citro2d. Here is citro2d documentation: https://citro2d.devkitpro.org/ Here is libctru documentation: https://libctru.devkitpro.org/  
 
